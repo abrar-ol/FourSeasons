@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://btrblsp8slorp"]
 
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_0id3g"]
+[ext_resource type="Script" path="res://screpts/player.gd" id="1_1gb5q"]
 [ext_resource type="Texture2D" uid="uid://d1qfwa5b8g8xw" path="res://assets/knight.png" id="1_mn78y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0w7vs"]
@@ -100,7 +100,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -153,24 +153,22 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 5.0
+"speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ulsuo"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_or2mk"]
 radius = 5.0
-height = 18.0
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_0id3g")
+script = ExtResource("1_1gb5q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 5
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_3r1f4")
 animation = &"run"
 autoplay = "idle"
-frame = 12
-frame_progress = 0.22449
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -9)
-shape = SubResource("CapsuleShape2D_ulsuo")
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_or2mk")
