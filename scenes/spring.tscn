@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://pujkar0y5lqh"]
+[gd_scene load_steps=24 format=3 uid="uid://pujkar0y5lqh"]
 
 [ext_resource type="Texture2D" uid="uid://y7lm5bc4xt88" path="res://assets/sky_.png" id="1_ncmq7"]
+[ext_resource type="Script" path="res://scripts/spring.gd" id="1_o8kpu"]
 [ext_resource type="Texture2D" uid="uid://bfw56hlovsl7y" path="res://assets/foreground_.png" id="2_gw1lx"]
 [ext_resource type="Texture2D" uid="uid://c6vjq44guywf3" path="res://assets/staticObjects_.png" id="2_tbfqt"]
 [ext_resource type="Texture2D" uid="uid://hh106x20d2d6" path="res://assets/summer_.png" id="3_fi04o"]
@@ -10,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://3le0cje4fv5r" path="res://scenes/platform.tscn" id="8_03d14"]
 [ext_resource type="PackedScene" uid="uid://85nc4ulde7v7" path="res://scenes/coin.tscn" id="9_ermq8"]
 [ext_resource type="PackedScene" uid="uid://vgfi2gxer0c4" path="res://scenes/killzone.tscn" id="10_8f2fm"]
+[ext_resource type="PackedScene" uid="uid://cilcwu3qnewpl" path="res://scenes/slime.tscn" id="12_fkep7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ae7m4"]
 texture = ExtResource("1_ncmq7")
@@ -2445,6 +2447,21 @@ sources/7 = SubResource("TileSetAtlasSource_bmpfd")
 sources/10 = SubResource("TileSetAtlasSource_b2f8y")
 sources/11 = SubResource("TileSetAtlasSource_o2d0k")
 
+[sub_resource type="Animation" id="Animation_v24xe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(511, 357)]
+}
+
 [sub_resource type="Animation" id="Animation_exbt5"]
 resource_name = "move"
 length = 1.5
@@ -2462,21 +2479,6 @@ tracks/0/keys = {
 "values": [Vector2(511, 357), Vector2(401, 357)]
 }
 
-[sub_resource type="Animation" id="Animation_v24xe"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(511, 357)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nvak4"]
 _data = {
 "RESET": SubResource("Animation_v24xe"),
@@ -2486,6 +2488,7 @@ _data = {
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_suyyi"]
 
 [node name="Spring" type="Node2D"]
+script = ExtResource("1_o8kpu")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_h0lq1")
@@ -2520,52 +2523,54 @@ libraries = {
 }
 autoplay = "move"
 
-[node name="Coin" parent="." instance=ExtResource("9_ermq8")]
+[node name="Coins" type="Node" parent="."]
+
+[node name="Coin" parent="Coins" instance=ExtResource("9_ermq8")]
 position = Vector2(8, 509)
 
-[node name="Coin2" parent="." instance=ExtResource("9_ermq8")]
+[node name="Coin2" parent="Coins" instance=ExtResource("9_ermq8")]
 position = Vector2(104, 535)
 
-[node name="Coin3" parent="." instance=ExtResource("9_ermq8")]
+[node name="Coin3" parent="Coins" instance=ExtResource("9_ermq8")]
 position = Vector2(280, 520)
 
-[node name="Coin4" parent="." instance=ExtResource("9_ermq8")]
+[node name="Coin4" parent="Coins" instance=ExtResource("9_ermq8")]
 position = Vector2(191, 453)
 
-[node name="Coin5" parent="." instance=ExtResource("9_ermq8")]
+[node name="Coin5" parent="Coins" instance=ExtResource("9_ermq8")]
 position = Vector2(212, 456)
 
-[node name="Coin6" parent="." instance=ExtResource("9_ermq8")]
+[node name="Coin6" parent="Coins" instance=ExtResource("9_ermq8")]
 position = Vector2(235, 457)
 
-[node name="Coin7" parent="." instance=ExtResource("9_ermq8")]
+[node name="Coin7" parent="Coins" instance=ExtResource("9_ermq8")]
 position = Vector2(261, 457)
 
-[node name="Coin8" parent="." instance=ExtResource("9_ermq8")]
+[node name="Coin8" parent="Coins" instance=ExtResource("9_ermq8")]
 position = Vector2(290, 454)
 
-[node name="Coin9" parent="." instance=ExtResource("9_ermq8")]
+[node name="Coin9" parent="Coins" instance=ExtResource("9_ermq8")]
 position = Vector2(473, 438)
 
-[node name="Coin10" parent="." instance=ExtResource("9_ermq8")]
+[node name="Coin10" parent="Coins" instance=ExtResource("9_ermq8")]
 position = Vector2(377, 507)
 
-[node name="Coin11" parent="." instance=ExtResource("9_ermq8")]
+[node name="Coin11" parent="Coins" instance=ExtResource("9_ermq8")]
 position = Vector2(520, 538)
 
-[node name="Coin12" parent="." instance=ExtResource("9_ermq8")]
+[node name="Coin12" parent="Coins" instance=ExtResource("9_ermq8")]
 position = Vector2(616, 415)
 
-[node name="Coin13" parent="." instance=ExtResource("9_ermq8")]
+[node name="Coin13" parent="Coins" instance=ExtResource("9_ermq8")]
 position = Vector2(536, 339)
 
-[node name="Coin14" parent="." instance=ExtResource("9_ermq8")]
+[node name="Coin14" parent="Coins" instance=ExtResource("9_ermq8")]
 position = Vector2(367, 338)
 
-[node name="Coin15" parent="." instance=ExtResource("9_ermq8")]
+[node name="Coin15" parent="Coins" instance=ExtResource("9_ermq8")]
 position = Vector2(304, 338)
 
-[node name="Coin16" parent="." instance=ExtResource("9_ermq8")]
+[node name="Coin16" parent="Coins" instance=ExtResource("9_ermq8")]
 position = Vector2(256, 321)
 
 [node name="Killzone" parent="." instance=ExtResource("10_8f2fm")]
@@ -2573,3 +2578,9 @@ position = Vector2(56, 618)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 shape = SubResource("WorldBoundaryShape2D_suyyi")
+
+[node name="Slime" parent="." instance=ExtResource("12_fkep7")]
+position = Vector2(361, 561)
+
+[node name="Slime2" parent="." instance=ExtResource("12_fkep7")]
+position = Vector2(153, 463)
