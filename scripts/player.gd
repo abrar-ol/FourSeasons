@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 const MAX_JUMP = 2
@@ -10,9 +9,8 @@ var jumps = 0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animated_sprite = $AnimatedSprite2D
 
-
 func _physics_process(delta): 
-	print(jumps)
+	
 	if not is_on_floor():
 		velocity.y += gravity * delta 
 		if Input.is_action_just_pressed("jump") and jumps > 0 and jumps < MAX_JUMP and can_double_jump:
