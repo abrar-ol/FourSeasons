@@ -15,7 +15,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("up") and is_ladder :
 		gravity =0
-		position.y = -10
+		velocity.y = -10
 		print("up")
 		
 	
