@@ -7,10 +7,23 @@ const MAX_JUMP = 2
 var can_double_jump = false
 var jumps = 0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var is_ladder = false
+
 @onready var animated_sprite = $AnimatedSprite2D
 
 func _physics_process(delta): 
 	
+	if Input.is_action_just_pressed("up") and is_ladder :
+		gravity =0
+		position.y = -10
+		print("up")
+		
+	
+	if Input.is_action_just_pressed("down") and is_ladder :
+		gravity =0
+		velocity.y = 10
+		print("down")
+		
 	if not is_on_floor():
 		velocity.y += gravity * delta 
 		if Input.is_action_just_pressed("jump") and jumps > 0 and jumps < MAX_JUMP and can_double_jump:
@@ -46,3 +59,8 @@ func _physics_process(delta):
 	move_and_slide()
 			
 			
+
+
+
+func _player_on_ladder(is_player_on_ladder):
+	is_ladder = is_player_on_ladder

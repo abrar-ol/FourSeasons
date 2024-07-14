@@ -6,4 +6,5 @@ func _process(delta):
 
 
 func _on_information_area_body_entered(body):
-	print("player entered")
+	#print("player entered") 
+	pass
