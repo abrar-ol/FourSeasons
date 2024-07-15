@@ -13,16 +13,18 @@ var is_ladder = false
 
 func _physics_process(delta): 
 	
-	if Input.is_action_just_pressed("up") and is_ladder :
+	if is_ladder:
 		gravity =0
-		velocity.y = -10
-		print("up")
-		
-	
-	if Input.is_action_just_pressed("down") and is_ladder :
-		gravity =0
-		velocity.y = 10
-		print("down")
+		if Input.is_action_pressed("up"):
+			velocity.y = -90
+			print(velocity)
+		elif Input.is_action_pressed("down"):
+			velocity.y = 90
+			print(velocity)			
+		else:
+			velocity.y = 0
+	else:
+		gravity = 980
 		
 	if not is_on_floor():
 		velocity.y += gravity * delta 
@@ -57,10 +59,7 @@ func _physics_process(delta):
 			animated_sprite.play("idle")
 
 	move_and_slide()
-			
-			
 
-
-
-func _player_on_ladder(is_player_on_ladder):
+func set_player_on_ladder(is_player_on_ladder):
+	print(is_player_on_ladder)
 	is_ladder = is_player_on_ladder

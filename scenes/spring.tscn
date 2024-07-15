@@ -2495,8 +2495,8 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nujb3"]
 size = Vector2(14, 14)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ax8w"]
-size = Vector2(12, 32)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c6uj3"]
+size = Vector2(12, 96)
 
 [node name="Spring" type="Node2D"]
 script = ExtResource("1_o8kpu")
@@ -2625,11 +2625,9 @@ position = Vector2(24, 553)
 shape = SubResource("RectangleShape2D_nujb3")
 
 [node name="LadderArea" parent="." instance=ExtResource("14_gnkxj")]
-position = Vector2(56, 529)
+position = Vector2(632, 496)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LadderArea"]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_2ax8w")
+shape = SubResource("RectangleShape2D_c6uj3")
 
 [connection signal="body_entered" from="InformationArea" to="." method="_on_information_area_body_entered"]
-[connection signal="player_on_ladder" from="LadderArea" to="Player" method="_player_on_ladder"]
